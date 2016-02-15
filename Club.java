@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * Store details of club memberships.
  * 
@@ -47,7 +48,7 @@ public class Club
     {
         int numeroSocios = -1;
         if (month >= 1 && month <= 12) {
-           numeroSocios = 0;
+            numeroSocios = 0;
             for (Membership socio : socios) {
                 if (socio.getMonth() == month) {
                     numeroSocios++;
@@ -58,5 +59,31 @@ public class Club
             System.out.println("El dato introducido para el mes no es válido [1-12]");
         }
         return numeroSocios;
+    }
+
+    /** 
+     * Todos los socios que se han dado de alta un determinado mes de un determinado año se
+     * dan de baja. En caso de que el parametro month contenga un valor no valido se muestra 
+     * por pantalla el error.
+     * @param month El mes en el que estamos interesados
+     * @param year El año en el que estamos interesados
+     * @return Una coleccion con los socios que se han dado de baja del club
+     */
+    public ArrayList<Membership> purge(int month, int year)
+    {
+        ArrayList<Membership> sociosDeBaja = null;
+        if (month >= 1 && month <= 12) {
+            sociosDeBaja = new ArrayList<>();
+            for (int index = 0; index < socios.size(); index++) {
+                if (socios.get(index).getMonth() == month && socios.get(index).getYear() == year) {
+                    sociosDeBaja.add(socios.remove(index));
+                    index--;
+                }
+            }
+        }
+        else {
+            System.out.println("El dato introducido para el mes no es válido [1-12]");
+        }
+        return sociosDeBaja;
     }
 }

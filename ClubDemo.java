@@ -29,8 +29,13 @@ public class ClubDemo
     {
         club.join(new Membership("David", 2, 2004));
         club.join(new Membership("Michael", 1, 2004));
+        club.join(new Membership("Jose", 1, 2004));
+        club.join(new Membership("Luis", 1, 2004));
+        
+        club.purge(1, 2004);
         System.out.println("The club has " +
                            club.numberOfMembers() +
                            " members.");
     }
+    
 }
