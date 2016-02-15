@@ -74,10 +74,12 @@ public class Club
         ArrayList<Membership> sociosDeBaja = null;
         if (month >= 1 && month <= 12) {
             sociosDeBaja = new ArrayList<>();
-            for (int index = 0; index < socios.size(); index++) {
-                if (socios.get(index).getMonth() == month && socios.get(index).getYear() == year) {
-                    sociosDeBaja.add(socios.remove(index));
-                    index--;
+            Iterator<Membership> it = socios.iterator();
+            while (it.hasNext()) {
+                Membership socio = it.next();
+                if (socio.getMonth() == month && socio.getYear() == year) {
+                    socios.remove(socio);
+                    sociosDeBaja.add(socio);
                 }
             }
         }
